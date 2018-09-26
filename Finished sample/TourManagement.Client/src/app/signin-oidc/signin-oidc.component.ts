@@ -14,8 +14,9 @@ export class SigninOidcComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.openIdConnectService.userLoaded$.subscribe((userLoaded) => {
+    var userSubscription = this.openIdConnectService.userLoaded$.subscribe((userLoaded) => {
       if (userLoaded) {
+        userSubscription.unsubscribe();
         this.router.navigate(['./']);
       }
       else {
